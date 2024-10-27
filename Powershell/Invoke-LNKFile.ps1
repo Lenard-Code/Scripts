@@ -1,3 +1,23 @@
+<#
+.SYNOPSIS
+    Creates and configures a hidden LNK (shortcut) file to execute a specified command.
+
+.DESCRIPTION
+    The Invoke-LNKFile function creates a shortcut file (.lnk) at a specified path.
+    It sets various properties of the shortcut, such as the icon, target path, arguments, working directory, hotkey, and window style.
+    The shortcut is then saved and hidden.
+
+.PARAMETER None
+    This function does not require any parameters.
+
+.EXAMPLE
+    Invoke-LNKFile
+
+.NOTES
+    Author: Lenard
+    Date: 2024-10-27 (Added to GitHub)
+#>
+
 ﻿function Invoke-LNKFile {
     $path = "C:\Users\SomeUser\Downloads\Resuce.lnk"
     $wshell = New-Object -ComObject Wscript.Shell
