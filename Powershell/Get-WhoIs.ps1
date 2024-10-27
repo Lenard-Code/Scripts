@@ -1,4 +1,24 @@
-﻿function Get-WhoisDB {
+<#
+.SYNOPSIS
+    Retrieves and categorizes WHOIS information for a list of IP addresses from various regional internet registries.
+
+.DESCRIPTION
+    The Get-WhoisDB function reads a list of IP addresses from a specified file and queries the WHOIS database for each IP.
+    It categorizes the IP addresses based on the regional internet registry (RIR) that they belong to, such as RIPE, APNIC, AFRINIC, LACNIC, JPNIC, KRNIC, TWNIC, IRINN, and ARIN.
+    The results are displayed and specific WHOIS querying functions for each RIR are invoked if there are matching IPs.
+
+.PARAMETER IPfile
+    A string specifying the path to a file containing a list of IP addresses to be queried.
+
+.EXAMPLE
+    Get-WhoisDB -IPfile "C:\path\to\iplist.txt"
+
+.NOTES
+    Author: Lenard
+    Date: 2024-10-27 (Added to Github, made years ago)
+#>
+ 
+ function Get-WhoisDB {
     Param (
         [string]$IPfile
     )
