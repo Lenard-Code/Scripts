@@ -1,4 +1,30 @@
-﻿function Get-AllWslThings{
+<#
+.SYNOPSIS
+    Retrieves information about WSL installations on a list of remote hosts.
+
+.DESCRIPTION
+    The Get-AllWslThings function checks a list of specified hosts to determine if they have any WSL (Windows Subsystem for Linux) installations.
+    It tries to establish a connection to each host and searches for specific WSL-related executables in the Program Files\WindowsApps directory.
+    The function outputs the results to a specified file or displays them on the console.
+
+.PARAMETER shost
+    A string representing a single host name (not used in the function but reserved for future use).
+
+.PARAMETER shostFile
+    A string specifying the path to a file containing a list of host names to be checked.
+
+.PARAMETER OutFile
+    A string specifying the path to an output file where the results will be saved. If not provided, results are displayed on the console.
+
+.EXAMPLE
+    Get-AllWslThings -shostFile "C:\hosts.txt" -OutFile "C:\wsl_results.txt"
+
+.NOTES
+    Author: Lenard
+    Date: 2024-10-27 (added to github, not sure when it was made)
+#>
+ 
+ function Get-AllWslThings{
     Param(
         [string]$shost,
         [string]$shostFile,
