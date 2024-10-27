@@ -3,7 +3,7 @@
         [string]$ip,
         [string]$shost,
         [string]$zname,
-		[string]$domain
+	[string]$domain
     )
 
     $hashTableMainHost = @()
