@@ -1,4 +1,6 @@
-﻿function Search-PSEvent {
+#Code provided by Ben Ten during course in 2021?
+ 
+ function Search-PSEvent {
     Param(
         [datetime]$Start,
         [datetime]$End,
