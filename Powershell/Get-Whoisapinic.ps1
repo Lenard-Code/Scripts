@@ -1,4 +1,24 @@
-﻿function Get-WhoisAPNIC {
+<#
+.SYNOPSIS
+    Retrieves and displays WHOIS information for a list of IP addresses from the APNIC database.
+
+.DESCRIPTION
+    The Get-WhoisAPNIC function takes a list of IP addresses and queries the APNIC WHOIS database for each address.
+    It collects relevant information such as IP range, description, network name, country, and last modified date.
+    The results are formatted and displayed in a table format.
+
+.PARAMETER IPfile
+    An array of strings specifying the list of IP addresses to be queried.
+
+.EXAMPLE
+    Get-WhoisAPNIC -IPfile @("192.168.1.1", "203.0.113.0")
+
+.NOTES
+    Author: Lenard
+    Date: 2024-10-27 (Added to GitHub)
+#>
+ 
+ function Get-WhoisAPNIC {
     Param(
         [string[]]$IPfile
     )
