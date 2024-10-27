@@ -1,4 +1,30 @@
-﻿function Get-MemoryDump {
+<#
+.SYNOPSIS
+    Collects a memory dump from a remote host using the RamCapture tool.
+
+.DESCRIPTION
+    The Get-MemoryDump function establishes a PowerShell session with a specified remote host to perform a memory dump.
+    It copies the RamCapture tool to the remote host, decompresses it, runs the capture, compresses the dump, and retrieves the compressed file.
+    It also cleans up the temporary files and closes the PowerShell session.
+
+.PARAMETER RemoteHost
+    A string representing the name or IP address of the remote host.
+
+.PARAMETER UserName
+    A string representing the username under which the compressed memory dump file will be saved on the local machine.
+
+.PARAMETER RamCapPath
+    A string specifying the path to the RamCapture tool zip file on the local machine.
+
+.EXAMPLE
+    Get-MemoryDump -RemoteHost "192.168.1.10" -UserName "JohnDoe" -RamCapPath "C:\Tools\RamCapture.zip"
+
+.NOTES
+    Author: Lenard
+    Date: 2024-10-27 (Added to github, was made a long time ago)
+#>
+ 
+ function Get-MemoryDump {
     Param (
         [Parameter(Mandatory=$True)]
         [string]$RemoteHost,
