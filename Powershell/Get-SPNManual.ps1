@@ -1,4 +1,6 @@
-﻿Add-Type -AssemblyName System.IdentityModel
+#Code provided by Ben Ten during a course sometime in 2021
+ 
+ Add-Type -AssemblyName System.IdentityModel
 $ForestInfo = [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()
 $CurrentGCs = $ForestInfo.FindAllGlobalCatalogs()
 $GC = $ForestInfo.ApplicationPartitions[0].SecurityReferenceDomain
