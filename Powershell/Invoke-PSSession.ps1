@@ -1,3 +1,29 @@
+<#
+.SYNOPSIS
+    Establishes PowerShell sessions with remote hosts.
+
+.DESCRIPTION
+    The Invoke-PSSession function attempts to create PowerShell sessions with one or multiple remote hosts.
+    It takes either a single hostname or a file containing a list of hostnames and tries to establish a session with each.
+    The function outputs the status of each connection attempt.
+
+.PARAMETER RHost
+    A string representing the name or IP address of a single remote host.
+
+.PARAMETER RHostFile
+    A string specifying the path to a file containing a list of remote hostnames or IP addresses.
+
+.EXAMPLE
+    Invoke-PSSession -RHost "192.168.1.10"
+
+.EXAMPLE
+    Invoke-PSSession -RHostFile "C:\path\to\hosts.txt"
+
+.NOTES
+    Author: Lenard
+    Date: 2024-10-27 (Added to github)
+#>
+
 ﻿function Invoke-PSSession {
     Param(
         [string]$RHost,
