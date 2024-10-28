@@ -92,6 +92,6 @@ function Rebuild-TeamsConversations {
             }
         }
         
-        Write-Host "############ End of ConversationId ##################`n" -ForegroundColor Green
+        Write-Host "############ End of Conversation ##################`n" -ForegroundColor Green
     }
 }
