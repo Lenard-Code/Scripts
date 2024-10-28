@@ -3,7 +3,7 @@
     Parses a JSON file containing MS Teams messages, contacts, and meetings to rebuild conversations and print details to the console. This directory is located %AppData%\AppData\Roaming\Microsoft\Teams\IndexedDB\https_teams.microsoft.com_0.indexeddb.leveldb
 
 .DESCRIPTION
-    The Rebuild-Conversations function reads and parses a JSON file, separates messages, contacts, and meetings, and maps 'mri' to 'displayName'.
+    The Rebuild-Conversations function reads and parses a JSON file, separates messages, contacts, files shared and meetings.
     It groups messages by 'conversationId', sorts them by 'createdTime', removes occurrences of 'Â' and newlines from message content, and prints the conversation details to the console.
     For conversations starting with '19:meeting', it extracts and displays meeting details including creator, event type, meeting type, subject, meeting duration, start time, end time, and the number of members.
 
@@ -11,14 +11,17 @@
     The path to the JSON file to be parsed.
 
 .EXAMPLE
-    # Call the function to rebuild conversations
     Rebuild-TeamsConversations -JsonFilePath $jsonFilePath
 #>
 
-function Rebuild-TeamsConversations {
+# Function to parse JSON file and rebuild conversations
+function Rebuild-Conversations {
     param (
         [string]$JsonFilePath
     )
+
+    # Initialize output storage
+    $output = @()
 
     # Read and parse JSON file
     $jsonData = Get-Content -Path $JsonFilePath | ConvertFrom-Json
@@ -33,12 +36,35 @@ function Rebuild-TeamsConversations {
     foreach ($contact in $contacts) {
         $mriToDisplayName[$contact.mri] = $contact.displayName
     }
+    Write-Host "############ Users found ############"  -ForegroundColor Green
+    foreach ($contact in $contacts) {
+        $displayName = $contact.displayName
+        $email = $contact.email
+        $userPrincipalName = $contact.userPrincipalName
+
+        Write-Host "Display Name: $displayName"
+        Write-Host "Email: $email"
+        Write-Host "User Principal Name: $userPrincipalName"
+        Write-Host "-------------------------------------------"
+    }
+    Write-Host "############ Shared Files ############"  -ForegroundColor Green
+    foreach($message in $messages){
+        if ($message.properties.files) {
+            foreach ($file in $message.properties.files) {
+                $fileName = $file.fileName
+                $fileUrl = $file.objectUrl
+                Write-Host "$fileName ('$fileUrl')"
+            }
+        }
+    }
+
+    Write-host $mriToDisplayName.displayName $mriToDisplayName.email
 
     # Group messages by conversationId and sort by createdTime
     $groupedConversations = $messages | Group-Object -Property conversationId
 
     foreach ($conversation in $groupedConversations) {
-        Write-Host "############ Begin of Conversation #################" -ForegroundColor Green
+        Write-Host "############ Begin of Conversation ############" -ForegroundColor Green
         Write-Host "Conversation ID: $($conversation.Name)"
 
         $sortedMessages = $conversation.Group | Sort-Object -Property createdTime
@@ -90,8 +116,22 @@ function Rebuild-TeamsConversations {
                     Write-Host "  Emotions - ${emotionType}: $($users -join ', ')"
                 }
             }
+            # List files shared in message
+            if ($message.properties.files) {
+                foreach ($file in $message.properties.files) {
+                    $fileName = $file.fileName
+                    $fileUrl = $file.objectUrl
+                    #$fusers = $file.users | ForEach-Object { $mriToDisplayName[$_.mri] }
+
+                    Write-Host "  File - $fileName ('$fileUrl')"
+                }
+            }
         }
         
+<<<<<<< Updated upstream
         Write-Host "############ End of Conversation ##################`n" -ForegroundColor Green
+=======
+        Write-Host "############ End of Conversation ############`n" -ForegroundColor Green
+>>>>>>> Stashed changes
     }
 }
