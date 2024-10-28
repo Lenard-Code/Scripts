@@ -11,11 +11,11 @@
     The path to the JSON file to be parsed.
 
 .EXAMPLE
+    # Call the function to rebuild conversations
     Rebuild-TeamsConversations -JsonFilePath $jsonFilePath
 #>
 
-# Function to parse JSON file and rebuild conversations
-function Rebuild-Conversations {
+function Rebuild-TeamsConversations {
     param (
         [string]$JsonFilePath
     )
@@ -33,35 +33,12 @@ function Rebuild-Conversations {
     foreach ($contact in $contacts) {
         $mriToDisplayName[$contact.mri] = $contact.displayName
     }
-    Write-Host "############ Users found ############"  -ForegroundColor Green
-    foreach ($contact in $contacts) {
-        $displayName = $contact.displayName
-        $email = $contact.email
-        $userPrincipalName = $contact.userPrincipalName
-
-        Write-Host "Display Name: $displayName"
-        Write-Host "Email: $email"
-        Write-Host "User Principal Name: $userPrincipalName"
-        Write-Host "-------------------------------------------"
-    }
-    Write-Host "############ Shared Files ############"  -ForegroundColor Green
-    foreach($message in $messages){
-        if ($message.properties.files) {
-            foreach ($file in $message.properties.files) {
-                $fileName = $file.fileName
-                $fileUrl = $file.objectUrl
-                Write-Host "$fileName ('$fileUrl')"
-            }
-        }
-    }
-
-    Write-host $mriToDisplayName.displayName $mriToDisplayName.email
 
     # Group messages by conversationId and sort by createdTime
     $groupedConversations = $messages | Group-Object -Property conversationId
 
     foreach ($conversation in $groupedConversations) {
-        Write-Host "############ Begin of Conversation ############" -ForegroundColor Green
+        Write-Host "############ Begin of Conversation #################" -ForegroundColor Green
         Write-Host "Conversation ID: $($conversation.Name)"
 
         $sortedMessages = $conversation.Group | Sort-Object -Property createdTime
@@ -113,22 +90,8 @@ function Rebuild-Conversations {
                     Write-Host "  Emotions - ${emotionType}: $($users -join ', ')"
                 }
             }
-            # List files shared in message
-            if ($message.properties.files) {
-                foreach ($file in $message.properties.files) {
-                    $fileName = $file.fileName
-                    $fileUrl = $file.objectUrl
-                    #$fusers = $file.users | ForEach-Object { $mriToDisplayName[$_.mri] }
-
-                    Write-Host "  File - $fileName ('$fileUrl')"
-                }
-            }
         }
         
-<<<<<<< Updated upstream
         Write-Host "############ End of Conversation ##################`n" -ForegroundColor Green
-=======
-        Write-Host "############ End of Conversation ############`n" -ForegroundColor Green
->>>>>>> Stashed changes
     }
 }
