@@ -20,9 +20,6 @@ function Rebuild-Conversations {
         [string]$JsonFilePath
     )
 
-    # Initialize output storage
-    $output = @()
-
     # Read and parse JSON file
     $jsonData = Get-Content -Path $JsonFilePath | ConvertFrom-Json
 
