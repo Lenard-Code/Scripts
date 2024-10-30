@@ -1,7 +1,7 @@
 import base64
 
 # Read the configuration file
-with open('config.pmc', 'rb') as file:
+with open('/some/path/file.dll', 'rb') as file:
     config_content = file.read()
 
 # Encode the content to a base64 string
