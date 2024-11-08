@@ -4,7 +4,7 @@ function Clean-DisplayName {
         [string]$name
     )
     # Remove anything in parentheses and version numbers
-    $name -replace '\s*\(.*\)', '' -replace '\d+(\.\d+)*', '' -replace '\s+$', ''
+    #$name -replace '\s*\(.*\)', '' -replace '\d+(\.\d+)*', '' -replace '\s+$', ''
 }
 
 # Debug function to log messages
