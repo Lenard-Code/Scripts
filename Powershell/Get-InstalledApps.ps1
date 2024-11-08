@@ -31,4 +31,4 @@ $software32 = Get-ChildItem -Path "HKLM:\Software\WOW6432Node\Microsoft\Windows\
 $software = $software64 + $software32
 
 # Convert to JSON and save to a file
-$software | ConvertTo-Json | Set-Content -Path "C:\Users\Chris\Desktop\output_registry.json"
+$software | ConvertTo-Json | Set-Content -Path "C:\Users\Path\Desktop\output_registry.json"
