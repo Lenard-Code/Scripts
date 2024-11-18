@@ -27,15 +27,15 @@ while IFS= read -r host; do
 
     # Perform TCP scan
     echo "Performing TCP scan on $host..."
-    nmap -sT -A -O $host -oN $OUTPUT_DIR/tcp_scan_$host.txt
+    nmap -sT -A -O -v $host -oN $OUTPUT_DIR/tcp_scan_$host.txt
 
     # Perform UDP scan
     echo "Performing UDP scan on $host..."
-    nmap -sU -A -O $host -oN $OUTPUT_DIR/udp_scan_$host.txt
+    nmap -sU -A -O -v $host -oN $OUTPUT_DIR/udp_scan_$host.txt
 
     # Perform ICMP and non-ICMP discovery
     echo "Performing ICMP and non-ICMP discovery on $host..."
-    nmap -PE -PS -PA -PP $host -oN $OUTPUT_DIR/icmp_scan_$host.txt
+    nmap -PE -PS -PA -PP -v $host -oN $OUTPUT_DIR/icmp_scan_$host.txt
 
     # Combine results into a single file for each host
     echo "Combining results for host: $host"
