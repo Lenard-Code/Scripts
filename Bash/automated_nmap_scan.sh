@@ -27,11 +27,11 @@ while IFS= read -r host; do
 
     # Perform TCP scan
     echo "Performing TCP scan on $host..."
-    nmap -sT -A -O -v $host -oN $OUTPUT_DIR/tcp_scan_$host.txt
+    nmap -sT -sV -v $host -oN $OUTPUT_DIR/tcp_scan_$host.txt
 
     # Perform UDP scan
     echo "Performing UDP scan on $host..."
-    nmap -sU -A -O -v $host -oN $OUTPUT_DIR/udp_scan_$host.txt
+    nmap -sU -sV -v $host -oN $OUTPUT_DIR/udp_scan_$host.txt
 
     # Perform ICMP and non-ICMP discovery
     echo "Performing ICMP and non-ICMP discovery on $host..."
