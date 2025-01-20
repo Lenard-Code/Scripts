@@ -106,7 +106,7 @@
         $GraphBodyParams = @{'resource' = 'https://graph.windows.net'}
         $GrapthPostHeaders = @{'Accept' = '*/*'; 'Accept-Encoding' =  'gzip, deflate, br'; 'Authorization' = 'Bearer $accessToken'}
         $Graphwebrequest = Invoke-WebRequest $GraphURL/v1.0/users -Method GET -Headers $GrapthPostHeaders -Body $GraphBodyParams
-
+        Write-host $Graphwebrequest
         # If we get a 200 response code it's a valid cred
         If ($webrequest.StatusCode -eq "200"){
         $parsedContent = $webrequest.content | ConvertFrom-Json
