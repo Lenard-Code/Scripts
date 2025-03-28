@@ -1,0 +1,3 @@
+whoami
+hostname
+Get-Process
