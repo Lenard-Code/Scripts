@@ -7,7 +7,7 @@ $psexecBytes = (Invoke-WebRequest -Uri $psexecUrl).Content
 $scriptContent = (Invoke-WebRequest -Uri $scriptUrl).Content
 
 # Create a temporary file for PsExec
-$tempPsExecPath = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "PsExec64.exe")
+$tempPsExecPath = [System.IO.Path]::Combine([System.IO.Path]::"C:\Temp", "PsExec64.exe")
 [System.IO.File]::WriteAllBytes($tempPsExecPath, $psexecBytes)
 
 # Create a script block from the downloaded script content
