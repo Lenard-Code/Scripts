@@ -1,3 +1,0 @@
-whoami
-hostname
-Get-Process
