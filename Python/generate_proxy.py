@@ -1,7 +1,7 @@
 import subprocess
 
 # Path to the original DLL
-original_dll = "C:\\Users\\C-PC3\\Desktop\\PingId.dll"
+original_dll = "C:\\Users\\user\\Desktop\\Some.dll"
 
 # Run dumpbin to get the list of exported functions
 result = subprocess.run(["dumpbin", "/EXPORTS", original_dll], capture_output=True, text=True)
@@ -34,7 +34,7 @@ void LoadOriginalDll()
     if (hOriginalDll == NULL)
     {
         // Load the original DLL
-        hOriginalDll = LoadLibrary(L"C:\\Windows\\System32\\PingIdCredentialProvider.dll");
+        hOriginalDll = LoadLibrary(L"C:\\Windows\\System32\\SomeOther.dll");
     }
 }
 """
