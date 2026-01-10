@@ -6,7 +6,7 @@ with open("proxy.cpp", "r") as f:
     proxy_code = f.read()
 
 # Path to the original DLL
-original_dll = "C:\\Users\\C-PC3\\Desktop\\PingId.dll"
+original_dll = "C:\\Users\\User\\Desktop\\Some.dll"
 
 # Run dumpbin to get the list of exported functions
 result = subprocess.run(["dumpbin", "/EXPORTS", original_dll], capture_output=True, text=True)
